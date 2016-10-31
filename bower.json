@@ -27,6 +27,6 @@
     "tests"
   ],
   "dependencies": {
-    
+    "classlist": "^2014.12.13"
   }
 }
