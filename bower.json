@@ -1,7 +1,7 @@
 {
   "name": "fastest-slider-js",
   "description": "Fastest slider",
-  "main": "",
+  "main": "src/js/main.js",
   "authors": [
     "Nathachai Thongniran <inid3a@gmail.com>"
   ],

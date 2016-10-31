@@ -2,7 +2,7 @@
   "name": "fastest-slider-js",
   "version": "1.0.0",
   "description": "Fastest slider",
-  "main": "js/fastest-slider.js",
+  "main": "src/js/main.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jojoee/fastest-slider-js.git"
