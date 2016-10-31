@@ -30,7 +30,7 @@ var FastestSlider = function(option) {
   };
 
   // interval
-  this.interval;
+  this.interval = null;
 
   /*================================================================ Util
    */
@@ -38,7 +38,7 @@ var FastestSlider = function(option) {
   this.isIe = function() {
     var myNav = navigator.userAgent.toLowerCase();
 
-    return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+    return (myNav.indexOf('msie') !== -1) ? parseInt(myNav.split('msie')[1]) : false;
   };
 
   // https://developer.mozilla.org/en/docs/Web/API/Element/setAttribute
@@ -139,15 +139,15 @@ var FastestSlider = function(option) {
   };
 
   this.log = function(title, data) {
-    if (typeof data === 'undefined') data = '';
-    if (this.option.isDebug) console.log(this.option.selector + ' ' + title, data);
+    if (typeof data === 'undefined') { data = ''; }
+    if (this.option.isDebug) { console.log(this.option.selector + ' ' + title, data); }
   };
 
   /*================================================================ API
    */
   
   this.startInterval = function(ms) {
-    if (typeof ms === 'undefined') ms = this.option.slideSpeed;
+    if (typeof ms === 'undefined') { ms = this.option.slideSpeed; }
     var self = this;
     
     this.stopInterval();
@@ -203,17 +203,13 @@ var FastestSlider = function(option) {
    */
   
   this.getPrevItemIndex = function() {
-    var result = (this.currentItemIndex <= 0)
-      ? this.items.length - 1
-      : this.currentItemIndex - 1;
+    var result = (this.currentItemIndex <= 0) ? this.items.length - 1 : this.currentItemIndex - 1;
 
     return result;
   };
   
   this.getNextItemIndex = function() {
-    var result = (this.currentItemIndex >= this.items.length - 1)
-      ? 0
-      : this.currentItemIndex + 1;
+    var result = (this.currentItemIndex >= this.items.length - 1) ? 0 : this.currentItemIndex + 1;
 
     return result;
   };
@@ -260,7 +256,7 @@ var FastestSlider = function(option) {
     } else {
       this.log('invalid selector');
     }
-  }
+  };
 
   // start
   this.init();
