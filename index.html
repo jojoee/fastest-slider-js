@@ -212,7 +212,12 @@ body {
 
   // normal
   var normal = new FastestSlider({
+    // required
     selector: '.normal-slide .items',
+
+    // non-required
+    autoSlide: false,
+    slideSpeed: 2000,
     isDebug: true,
     prevArrow: '.normal-slide .arrow-prev',
     nextArrow: '.normal-slide .arrow-next',
