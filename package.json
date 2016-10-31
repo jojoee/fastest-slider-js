@@ -1,0 +1,40 @@
+{
+  "name": "fastest-slider-js",
+  "version": "1.0.0",
+  "description": "Fastest slider",
+  "main": "js/fastest-slider.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jojoee/fastest-slider-js.git"
+  },
+  "keywords": [
+    "starter",
+    "simple",
+    "easy",
+    "frontend",
+    "slider",
+    "fast"
+  ],
+  "author": "Nathachai Thongniran <inid3a@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jojoee/fastest-slider-js/issues"
+  },
+  "homepage": "https://github.com/jojoee/fastest-slider-js#readme",
+  "devDependencies": {
+    "browser-sync": "^2.10.1",
+    "chai": "^3.5.0",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "mocha": "^2.5.3"
+  },
+  "scripts": {
+    "prestart": "bower install && npm install",
+    "start": "gulp default",
+    "test": "mocha test --reporter spec --recursive",
+    "test.watch": "mocha test --reporter spec --recursive --watch"
+  }
+}

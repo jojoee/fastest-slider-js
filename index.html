@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FastestSlider.js</title>
+<link rel="stylesheet" href="css/fastest-slider.css">
+<style>
+/* demo purpose */
+
+body {
+  font-family: monospace;
+}
+
+.body-wrap {
+  margin: 0 auto;
+}
+
+.wrap {
+  margin: 6px;
+  border: 1px solid #eee;
+  max-width: 420px;
+  float: left;
+  position: relative;
+}
+
+.title {
+  margin-bottom: 6px;
+}
+
+.items {
+
+}
+
+.item {
+  height: 200px;
+  width: 200px;
+  line-height: 200px;
+  background-color: #6e9cff;
+  color: #fff;
+  text-align: center;
+  font-size: 100px;
+  margin: 2px;
+}
+
+.pagi {
+  height: 36px;
+  width: 100%;
+  position: absolute;
+  top: 96px;
+}
+
+.pagi-arrow {
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  line-height: 36px;
+  background-color: #57bbff;
+  color: #fff;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.pagi-arrow:hover {
+  background-color: #89ccf9;
+}
+
+.pagi-arrow.arrow-prev {
+  float: left;
+}
+
+.pagi-arrow.arrow-next {
+  float: right;
+}
+</style>
+</head>
+<body>
+<div class="body-wrap">
+  <h1>FastestSlider.js</h1>
+
+  <!--
+  .wrap>.normal-items>..item{$}*6
+  -->
+
+  <div class="wrap one-item-slide">
+    <div class="title">Only one item</div>
+
+    <div class="items">
+      <div class="item">1</div>
+    </div>
+  </div><!-- .one-item-slide -->
+
+  <div class="wrap auto-slide">
+    <div class="title">Auto slide</div>
+
+    <div class="items">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+      <div class="item">6</div>
+    </div>
+  </div><!-- .auto-slide -->
+
+  <div class="wrap normal-slide">
+    <div class="title">Normal</div>
+
+    <div class="items">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+      <div class="item">6</div>
+    </div>
+
+    <div class="pagi">
+      <div class="pagi-arrow arrow-prev">&lt;</div>
+      <div class="pagi-arrow arrow-next">&gt;</div>
+    </div>
+  </div><!-- .normal-slide -->
+
+  <div class="wrap callback-slide">
+    <div class="title">Callback</div>
+
+    <div class="items">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+      <div class="item">6</div>
+    </div>
+
+    <div class="pagi">
+      <div class="pagi-arrow arrow-prev">&lt;</div>
+      <div class="pagi-arrow arrow-next">&gt;</div>
+    </div>
+  </div><!-- .callback-slide -->
+
+  <div class="wrap only-next-arrow-slide">
+    <div class="title">Only next arrow</div>
+
+    <div class="items">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+      <div class="item">6</div>
+    </div>
+
+    <div class="pagi">
+      <div class="pagi-arrow arrow-next">&gt;</div>
+    </div>
+  </div><!-- .only-next-arrow-slide-slide -->
+
+  <div class="wrap invalid-arrow-selector-slide">
+    <div class="title">Invalid arrow</div>
+
+    <div class="items">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+      <div class="item">6</div>
+    </div>
+
+    <div class="pagi">
+      <div class="pagi-arrow arrow-next">&gt;</div>
+    </div>
+  </div><!-- .invalid-arrow-selector-slide -->
+
+  <div class="wrap interval-slide">
+    <div class="title">Interval slide</div>
+
+    <div class="items">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+      <div class="item">6</div>
+    </div>
+  </div><!-- .interval-slide -->
+</body>
+<script src="js/fastest-slider.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  // invalid selector
+  // then ignore it
+  var invalidSelector = new FastestSlider({
+    selector: '',
+    isDebug: true,
+  });
+
+  // found only one item
+  var oneItem = new FastestSlider({
+    selector: '.one-item-slide .items',
+    isDebug: true,
+  });
+
+  // auto slide
+  var autoSlide = new FastestSlider({
+    selector: '.auto-slide .items',
+    autoSlide: true,
+    slideSpeed: 400,
+    isDebug: true,
+  });
+
+  // normal
+  var normal = new FastestSlider({
+    selector: '.normal-slide .items',
+    isDebug: true,
+    prevArrow: '.normal-slide .arrow-prev',
+    nextArrow: '.normal-slide .arrow-next',
+  });
+
+  // callback
+  var callback = new FastestSlider({
+    selector: '.callback-slide .items',
+    isDebug: true,
+    prevArrow: '.callback-slide .arrow-prev',
+    nextArrow: '.callback-slide .arrow-next',
+  });
+
+  // callback - callback event
+  callback.on('beforeChange', function() {
+    console.log('beforeChange - callback 1');
+  });
+
+  callback.on('afterChange', function() {
+    console.log('afterChange - callback 1');
+  });
+
+  callback.on('beforeChange', function() {
+    console.log('beforeChange - callback 2');
+  });
+
+  callback.on('afterChange', function() {
+    console.log('afterChange - callback 2');
+  });
+
+  // only right arrow
+  var rightArrow = new FastestSlider({
+    selector: '.only-next-arrow-slide .items',
+    isDebug: true,
+    nextArrow: '.only-next-arrow-slide .arrow-next',
+  });
+
+  // invalid arrow selector
+  var invalidArrowSelector = new FastestSlider({
+    selector: '.invalid-arrow-selector-slide .items',
+    isDebug: true,
+
+    // invalid arrow selector
+    nextArrow: '.invalid-arrow-selector-slide .arrow-next2',
+  });
+
+  // inteval
+  var interval = new FastestSlider({
+    selector: '.interval-slide .items',
+    autoSlide: true,
+    isDebug: true,
+  });
+
+  interval.stopInterval();
+  interval.startInterval(200);
+});
+</script>
+</body>
+</html>
