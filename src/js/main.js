@@ -35,17 +35,42 @@ var FastestSlider = function(option) {
   /*================================================================ Util
    */
   
+  /**
+   * Returns ture if browser if IE
+   * 
+   * @return {boolean}
+   */
   this.isIe = function() {
     var myNav = navigator.userAgent.toLowerCase();
 
     return (myNav.indexOf('msie') !== -1) ? parseInt(myNav.split('msie')[1]) : false;
   };
 
-  // https://developer.mozilla.org/en/docs/Web/API/Element/setAttribute
+  /**
+   * Set element's data attribute
+   *
+   * @see https://developer.mozilla.org/en/docs/Web/API/Element/setAttribute
+   * 
+   * @param {Object} ele
+   * @param {string} attrName
+   * @param {string} value
+   * 
+   * @return {Object} ele
+   */
   this.setAttr = function(ele, attrName, value) {
     return ele.setAttribute('data-' + this.prefix + '-' + attrName, value);
   };
 
+  /**
+   * Get element's data attribute
+   *
+   * @see https://developer.mozilla.org/en/docs/Web/API/Element/setAttribute
+   * 
+   * @param {Object} ele
+   * @param {string} attrName
+   * 
+   * @return {Object} ele
+   */
   this.getAttr = function(ele, attrName) {
     return ele.getAttribute('data-' + this.prefix + '-' + attrName);
   };
@@ -68,6 +93,14 @@ var FastestSlider = function(option) {
   /*================================================================ Plugin util
    */
   
+  /**
+   * Show element
+   * remove css class that hide the element
+   * add css class that show the element
+   * 
+   * @param {Object} ele
+   * @return {Object} ele
+   */
   this.showElement = function(ele) {
     ele.classList.remove('fasl-hide');
     ele.classList.add('fasl-show');
@@ -75,6 +108,14 @@ var FastestSlider = function(option) {
     return ele;
   };
 
+  /**
+   * Hide element
+   * remove css class that show the element
+   * add css class that hide the element
+   * 
+   * @param {Object} ele
+   * @return {Object} ele
+   */
   this.hideElement = function(ele) {
     ele.classList.remove('fasl-show');
     ele.classList.add('fasl-hide');
@@ -82,6 +123,9 @@ var FastestSlider = function(option) {
     return ele;
   };
 
+  /**
+   * Initialize prev arrow 
+   */
   this.initPrevArrow = function() {
     var self = this;
 
@@ -101,6 +145,9 @@ var FastestSlider = function(option) {
     }
   };
 
+  /**
+   * Initialize next arrow
+   */
   this.initNextArrow = function() {
     var self = this;
 
@@ -120,6 +167,9 @@ var FastestSlider = function(option) {
     }
   };
 
+  /**
+   * Initialize slider
+   */
   this.initSlider = function() {
     this.items = this.group.children;
 
@@ -153,6 +203,9 @@ var FastestSlider = function(option) {
     }
   };
 
+  /**
+   * Log
+   */
   this.log = function(title, data) {
     if (typeof data === 'undefined') { data = ''; }
     if (this.option.isDebug) { console.log(this.option.selector + ' ' + title, data); }
@@ -171,6 +224,10 @@ var FastestSlider = function(option) {
   /*================================================================ API
    */
   
+  /**
+   * Set interval
+   * - auto slide
+   */
   this.startInterval = function(ms) {
     if (typeof ms === 'undefined') { ms = this.option.slideSpeed; }
     var self = this;
@@ -182,12 +239,15 @@ var FastestSlider = function(option) {
     }, ms);
   };
 
+  /**
+   * Stop interval
+   */
   this.stopInterval = function() {
     clearInterval(this.interval);
   };
 
   /**
-   * Go to next slide
+   * Slide to next slide
    * caller
    */
   this.goToNext = function() {
@@ -195,7 +255,7 @@ var FastestSlider = function(option) {
   };
 
   /**
-   * Go to prev slide
+   * Slide to prev slide
    * caller
    */
   this.goToPrev = function() {
@@ -203,7 +263,7 @@ var FastestSlider = function(option) {
   };
 
   /**
-   * Go to slide by slide's index
+   * Slide to slide by slide's index
    * caller 
    * 
    * @param {string|number} goToIndex
@@ -227,10 +287,16 @@ var FastestSlider = function(option) {
     }
   };
 
-  /*================================================================ Custom event
+  /*================================================================ API - Custom event
    */
-
-  // TODO: refactor, eventName validatiion
+  
+  /**
+   * Adding callback event
+   * TODO: refactor, eventName validatiion
+   * 
+   * @param {string} eventName
+   * @param {function} callback
+   */
   this.on = function(eventName, callback) {
     if (typeof callback === 'function') {
       switch (eventName) {
@@ -246,14 +312,25 @@ var FastestSlider = function(option) {
     }
   };
 
+  /**
+   * Release beforeChange event
+   */
   this.releaseBeforeChangeEvent = function() {
     this.releaseEvent('beforeChange');
   };
 
+  /**
+   * Release afterChange event
+   */
   this.releaseAfterChangeEvent = function() {
     this.releaseEvent('afterChange');
   };
 
+  /**
+   * Release event by event name
+   * 
+   * @param {string} eventName - plugin's event name
+   */
   this.releaseEvent = function(eventName) {
     if (this.callback[eventName]) {
       var nEvents = this.callback[eventName].length,
@@ -268,30 +345,47 @@ var FastestSlider = function(option) {
   /*================================================================ Others
    */
   
+  /**
+   * Get prev-slide's index
+   */
   this.getPrevItemIndex = function() {
     var result = (this.currentItemIndex <= 0) ? this.items.length - 1 : this.currentItemIndex - 1;
 
     return result;
   };
   
+  /**
+   * Get next-slide's index
+   */
   this.getNextItemIndex = function() {
     var result = (this.currentItemIndex >= this.items.length - 1) ? 0 : this.currentItemIndex + 1;
 
     return result;
   };
   
+  /**
+   * Slide to next slide
+   */
   this.slideToNextItem = function() {
     var nextIndex = this.getNextItemIndex();
 
     this.slideTo(nextIndex);
   };
 
+  /**
+   * Slide to prev slide
+   */
   this.slideToPrevItem = function() {
     var prevIndex = this.getPrevItemIndex();
 
     this.slideTo(prevIndex);
   };
 
+  /**
+   * Slide to slide by slide's index 
+   * 
+   * @param {number} slideToIndex
+   */
   this.slideTo = function(slideToIndex) {
     var currentIndex = this.currentItemIndex;
 
@@ -306,7 +400,11 @@ var FastestSlider = function(option) {
     this.releaseAfterChangeEvent();
   };
 
-  // validate data, and initialize it 
+  /**
+   * Initialize plugin
+   * - validate data
+   * - initialize
+   */
   this.init = function() {
     // this.option = Object.assign(this.defaultOption, this.userOption);
 

@@ -80,7 +80,7 @@ nextArrow: '',
 
 # TODO
 - [ ] Implement JSHint into task runner
-- [ ] Complete DocBlockr
+- [x] Complete DocBlockr
 - [ ] Unit test
 - [ ] Add `.min` file (`uglify`)
 - [ ] Inject compliled `css` without refresh (`gulpfile.js`)
