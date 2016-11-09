@@ -96,28 +96,24 @@ var FastestSlider = function(option) {
   /**
    * Show element
    * remove css class that hide the element
-   * add css class that show the element
    * 
    * @param {Object} ele
    * @return {Object} ele
    */
   this.showElement = function(ele) {
     ele.classList.remove('fasl-hide');
-    ele.classList.add('fasl-show');
 
     return ele;
   };
 
   /**
    * Hide element
-   * remove css class that show the element
    * add css class that hide the element
    * 
    * @param {Object} ele
    * @return {Object} ele
    */
   this.hideElement = function(ele) {
-    ele.classList.remove('fasl-show');
     ele.classList.add('fasl-hide');
 
     return ele;
