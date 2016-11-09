@@ -1,1 +1,1 @@
-{"version":3,"sources":["fastest-slider.scss"],"names":[],"mappings":"AAEA;EACE,0BAA0B;CAC3B;;AAED;EACE,yBAAyB;CAC1B","file":"fastest-slider.css","sourcesContent":["// prefix: fasl\n\n.fasl-show {\n  display: block !important;\n}\n\n.fasl-hide {\n  display: none !important;\n}\n"]}
+{"version":3,"sources":["fastest-slider.scss"],"names":[],"mappings":"AAEA;EACE,yBAAyB;CAC1B","file":"fastest-slider.css","sourcesContent":["// prefix: fasl\r\n\r\n.fasl-hide {\r\n  display: none !important;\r\n}\r\n"]}
