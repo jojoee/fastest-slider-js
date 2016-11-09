@@ -20,6 +20,7 @@ body {
 .wrap {
   margin: 6px;
   border: 1px solid #eee;
+  width: 206px;
   max-width: 420px;
   float: left;
   position: relative;
@@ -30,7 +31,7 @@ body {
 }
 
 .items {
-
+  width: 204px;
 }
 
 .item {
@@ -72,6 +73,30 @@ body {
 
 .pagi-arrow.arrow-next {
   float: right;
+}
+
+.btns {
+  padding: 2px;
+  overflow: auto;
+}
+
+.btns .btn {
+  padding: 4px;
+  margin: 1px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  float: left;
+  
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  background-color: #57bbff;
+  cursor: pointer;
+}
+
+.btns .btn:hover {
+  background-color: #89ccf9;
 }
 </style>
 </head>
@@ -186,6 +211,34 @@ body {
       <div class="item">6</div>
     </div>
   </div><!-- .interval-slide -->
+
+  <div class="wrap goto-slide">
+    <div class="title">goTo slide</div>
+
+    <div class="items">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+      <div class="item">6</div>
+    </div>
+
+    <div class="btns">
+      <div class="btn btn-goto" data-goto="-1">Prev</div>
+      <div class="btn btn-goto" data-goto="+1">Next</div>
+
+      <div class="btn btn-goto" data-goto="0">0</div>
+      <div class="btn btn-goto" data-goto="1">1</div>
+      <div class="btn btn-goto" data-goto="2">2</div>
+      <div class="btn btn-goto" data-goto="3">3</div>
+      <div class="btn btn-goto" data-goto="4">4</div>
+      <div class="btn btn-goto" data-goto="5">5</div>
+
+      <div class="btn btn-goto" data-goto="invalidIndex">Invalid</div>
+      <div class="btn btn-goto" data-goto="88">88</div>
+    </div>
+  </div><!-- .goto-slide -->
 </body>
 <script src="dist/js/fastest-slider.js"></script>
 <script>
@@ -273,6 +326,25 @@ body {
 
   interval.stopInterval();
   interval.startInterval(200);
+
+  // goto
+  var goto = new FastestSlider({
+    selector: '.goto-slide .items',
+    autoSlide: false,
+    isDebug: true,
+  });
+
+  var gotoBtns = document.querySelectorAll('.goto-slide .btn-goto');
+  for (var i = 0; i < gotoBtns.length; i++) {
+    var btn = gotoBtns[i];
+
+    btn.onclick = function(event) {
+      var goToIndex = this.getAttribute('data-goto');
+
+      goto.goTo(goToIndex);
+      event.preventDefault();
+    }
+  }
 </script>
 </body>
 </html>
