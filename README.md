@@ -91,3 +91,12 @@ nextArrow: '',
 - [ ] Implement [ci.testling.com](https://ci.testling.com/)
 - [ ] Add E2E testing script by [Nightwatch.js](http://nightwatchjs.org/)
 - [ ] Localization
+
+# Changelog
+```
+1.1.0
+- Add 3 public APIs (goToNext, goToPrev, goTo)
+
+1.0.0
+- First release
+```
