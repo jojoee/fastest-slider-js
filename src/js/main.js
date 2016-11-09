@@ -50,6 +50,21 @@ var FastestSlider = function(option) {
     return ele.getAttribute('data-' + this.prefix + '-' + attrName);
   };
 
+  /**
+   * Check number is in a range ?
+   * 
+   * @see http://stackoverflow.com/questions/12806304/shortest-code-to-check-if-a-number-is-in-a-range-in-javascript
+   * @see http://stackoverflow.com/questions/6454198/check-a-range-of-numbers-in-an-if-condition
+   * 
+   * @param {number} x
+   * @param {number} min
+   * @param {number} max
+   * @return {boolean}
+   */
+  this.isBetween = function(x, min, max) {
+    return x >= min && x <= max;
+  };
+
   /*================================================================ Plugin util
    */
   
@@ -143,6 +158,16 @@ var FastestSlider = function(option) {
     if (this.option.isDebug) { console.log(this.option.selector + ' ' + title, data); }
   };
 
+  /**
+   * Check the goToIndex is valid or not
+   * 
+   * @param {number} index - integer number
+   * @return {boolean}
+   */
+  this.isValidGoToIndex = function(index) {
+    return this.isBetween(index, 0, this.items.length);
+  };
+
   /*================================================================ API
    */
   
@@ -159,6 +184,47 @@ var FastestSlider = function(option) {
 
   this.stopInterval = function() {
     clearInterval(this.interval);
+  };
+
+  /**
+   * Go to next slide
+   * caller
+   */
+  this.goToNext = function() {
+    this.slideToNextItem();
+  };
+
+  /**
+   * Go to prev slide
+   * caller
+   */
+  this.goToPrev = function() {
+    this.slideToPrevItem();
+  };
+
+  /**
+   * Go to slide by slide's index
+   * caller 
+   * 
+   * @param {string|number} goToIndex
+   */
+  this.goTo = function(goToIndex) {
+    if (goToIndex === '-1') {
+      this.slideToPrevItem();
+
+    } else if (goToIndex === '+1') {
+      this.slideToNextItem();
+      
+    } else {
+      goToIndex = parseInt(goToIndex);
+
+      if (this.isValidGoToIndex(goToIndex)) {
+        this.slideTo(goToIndex);
+
+      } else {
+        this.log('invalid goToIndex')
+      }
+    }
   };
 
   /*================================================================ Custom event
