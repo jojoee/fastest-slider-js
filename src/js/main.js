@@ -215,20 +215,20 @@ var FastestSlider = function(option) {
   };
   
   this.slideToNextItem = function() {
-    var currentIndex = this.currentItemIndex;
     var nextIndex = this.getNextItemIndex();
 
-    this.slideItem(currentIndex, nextIndex);
+    this.slideTo(nextIndex);
   };
 
   this.slideToPrevItem = function() {
-    var currentIndex = this.currentItemIndex;
     var prevIndex = this.getPrevItemIndex();
 
-    this.slideItem(currentIndex, prevIndex);
+    this.slideTo(prevIndex);
   };
 
-  this.slideItem = function(currentIndex, slideToIndex) {
+  this.slideTo = function(slideToIndex) {
+    var currentIndex = this.currentItemIndex;
+
     // dispatch
     this.releaseBeforeChangeEvent();
     
