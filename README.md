@@ -3,7 +3,7 @@
 
 Another fastest slider
 
-[![screenshot 1](https://raw.githubusercontent.com/jojoee/fastest-slider-js/master/screenshot/screenshot-1.gif "screenshot 1")](http://jojoee.github.io/fastest-slider-js/)
+[![screenshot 1](https://raw.githubusercontent.com/jojoee/fastest-slider-js/master/screenshot/screenshot-1.gif "screenshot 1")](http://jojoee.github.io/fastest-slider-js/) [![Greenkeeper badge](https://badges.greenkeeper.io/jojoee/fastest-slider-js.svg)](https://greenkeeper.io/)
 
 ## Install
 1: npm
